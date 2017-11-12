@@ -56,6 +56,22 @@ class LinkedList:
             current = current.getNext()
         return found
 
+    def delete(self, data):
+        current = self._head
+        prev = None
+        found = False
+        while not found:
+            if current._data == data:
+                found = True
+            else:
+                prev = current
+                current = current.getNext()
+        if prev == None:
+            self._head = current._nextNode
+            self._size -= 1
+        else:
+            prev.setNext(current.getNext())
+            self._size -= 1
 
     def __iter__(self):
         iter_node = self._head
@@ -76,4 +92,7 @@ print "-------"
 for i in a:
     print i
 print "-------"
-print a.search()
+a.delete(3)
+print "-------"
+for i in a:
+    print i
