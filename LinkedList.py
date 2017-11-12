@@ -2,9 +2,21 @@
 
 
 class Node:
-    def __init__(self, element, next):
-        self._element = element
-        self._next = None
+    def __init__(self, data, nextNode):
+        self._data = data
+        self._nextNode = nextNode
+
+    def getData(self):
+        return self._data
+
+    def getNext(self):
+        return self._nextNode
+
+    def setData(self, newdata):
+        self._data = newdata
+
+    def setNext(self, newnext):
+        self._nextNode = newnext
 
 
 class LinkedList:
@@ -12,23 +24,56 @@ class LinkedList:
         self._head = None
         self._size = 0
 
-    def push(self, e):
-        if self._head is None:
-        self._head = Node(e, self._head)
-        if self._head._element > self
-        self._size += 1
-
     def size(self):
         return self._size
 
-    def top(self):
-        return self._head._element
+    def add(self, e):
+        self._head = Node(e, self._head)
+        self._size += 1
 
     def pop(self):
-        answer = self._head._element
-        self._head = self._head._next
-        self._size -= 1
-        return answer
+        if self._size != 0:
+            answer = self._head._data
+            self._head = self._head._nextNode
+            self._size -= 1
+            return answer
+        print "Stack Empty"
+        return 0
+
+    def top(self):
+        if self._size != 0:
+            return self._head._data
+        print "Stack Empty"
+        return 0
+
+
+    def search(self, item):
+        current = self._head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            current = current.getNext()
+        return found
+
+
+    def __iter__(self):
+        iter_node = self._head
+        while iter_node:
+            yield iter_node._data
+            iter_node = iter_node._nextNode
 
 a = LinkedList()
-b = [2, 5, 7, 10, 15]
+
+a.add(1)
+a.add(2)
+a.add(3)
+a.add(4)
+a.add(5)
+a.add(6)
+
+print "-------"
+for i in a:
+    print i
+print "-------"
+print a.search()
