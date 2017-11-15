@@ -20,7 +20,7 @@ class Stack:
         self._size += 1
 
     def pop(self):
-        return self._data.pop(-1)
+        return self._data.pop()
 
     def top(self):
         if self.is_empty():
